@@ -1,22 +1,29 @@
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import path from 'path';
+import webpack from 'webpack';
+// import sass from 'sass'
 
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import path from 'path'
-import webpack from 'webpack'
-
-const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin
+const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
 // For testing take pull from Appblox/node-blox-sdk and npm install from path
-import { env } from 'node-blox-sdk'
-env.init()
+import { env } from 'node-blox-sdk';
+env.init();
 
-const __dirname = path.resolve()
+const __dirname = path.resolve();
+
+const port = 3059
+  // Number(
+  //   process.env.BLOX_ENV_URL_home.substr(
+  //     process.env.BLOX_ENV_URL_home.length - 4
+  //   )
+  // ) || 3002;
 
 export default {
   entry: './src/index',
   mode: 'development',
   devServer: {
     static: path.join(__dirname, 'dist'),
-    port: 4008,
+    port: port,
   },
   externals: {
     env: JSON.stringify(process.env),
@@ -27,25 +34,25 @@ export default {
   module: {
     rules: [
       {
-        test: /.js$/,
+        test: /\.js$/,
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-react'],
         },
       },
       {
-        test: /.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
-        test: /.m?js/,
-        type: 'javascript/auto',
-      },
-      {
-        test: /.m?js/,
-        resolve: {
-          fullySpecified: false,
+        test: /\.(jpg|png|svg)$/,
+        use: {
+          loader: 'url-loader',
         },
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -54,10 +61,10 @@ export default {
       'process.env': JSON.stringify(process.env),
     }),
     new ModuleFederationPlugin({
-      name: profile,
+      name: 'profile',
       filename: 'remoteEntry.js',
       exposes: {
-        './profile': './src/profile',
+        './profile': './src/profile/profile',
       },
       shared: {
         react: {
@@ -65,7 +72,35 @@ export default {
           shareKey: 'react', // under this name the shared module will be placed in the share scope
           shareScope: 'default', // share scope with this name will be used
           singleton: true, // only a single version of the shared module is allowed
-          version: '^17.0.2',
+          version: '^16.3.2',
+        },
+        'react-dom': {
+          import: 'react-dom', // the "react" package will be used a provided and fallback module
+          shareKey: 'react-dom', // under this name the shared module will be placed in the share scope
+          shareScope: 'default', // share scope with this name will be used
+          version: '^16.3.2',
+          singleton: true,
+        },
+        'react-redux': {
+          import: 'react-redux', // the "react" package will be used a provided and fallback module
+          shareKey: 'react-redux', // under this name the shared module will be placed in the share scope
+          shareScope: 'default', // share scope with this name will be used
+          version: '^7.2.5',
+          singleton: true,
+        },
+        'react-router-dom': {
+          import: 'react-router-dom', // the "react" package will be used a provided and fallback module
+          shareKey: 'react-router-dom', // under this name the shared module will be placed in the share scope
+          shareScope: 'default', // share scope with this name will be used
+          singleton: true, // only a single version of the shared module is allowed
+          version: '^5.2.0',
+        },
+        'blox-js-sdk': {
+          import: 'blox-js-sdk',
+          shareKey: 'blox-js-sdk',
+          shareScope: 'default',
+          singleton: true,
+          version: '^1.0.0',
         },
       },
     }),
@@ -73,4 +108,4 @@ export default {
       template: './public/index.html',
     }),
   ],
-}
+};

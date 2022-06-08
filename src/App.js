@@ -1,9 +1,11 @@
 import React from 'react'
-import profile from './profile'
+import Profile from './profile/profile.js'
+import './assets/css/main.scss';
+
 export default function App() {
   return (
     <div>
-      <profile/>
+      <Profile/>
     </div>
   )
 }
