@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Formik } from 'formik'
-// import { shield } from 'blox-js-sdk'
+import { shield } from 'blox-js-sdk'
 import Axios from 'axios'
 import ChangePwdModal from '../modals/change-pwd-modal.js'
 
@@ -31,15 +31,13 @@ const Profile = () => {
     setPicture(URL.createObjectURL(e.target.files[0]))
   }
   const getUserDetials = async () => {
-    // const token = shield.tokenStore.getToken()
+    const token = shield.tokenStore.getToken()
     try {
       const { data } = await Axios.get(
         `https://shield-dev.appblox.io/get-user-details`,
         {
           headers: {
-            // Authorization: `Bearer ${token}`,
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTQ2NzI1NjQsInRva2VuX3R5cGUiOiJBUFBCQUNDRVNTIiwidG9rZW5fdXVpZCI6IjRmOGNlODk5LTUxZWItNGEzMy05NTU1LWMzNWFkOWZjNzNkNiJ9.dCPiYTDl_4IVmEwUo5u2MVIFGNI4ngCL1cPdxooTQog',
+            Authorization: `Bearer ${token}`
           },
         }
       )

@@ -11,7 +11,7 @@ env.init();
 
 const __dirname = path.resolve();
 
-const port = 3059
+const port = 3003
   // Number(
   //   process.env.BLOX_ENV_URL_home.substr(
   //     process.env.BLOX_ENV_URL_home.length - 4
