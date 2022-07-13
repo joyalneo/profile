@@ -27,7 +27,7 @@ const ChangePwdModal = (props) => {
     const token = shield.tokenStore.getToken();
     try {
       const { data } = await Axios.post(
-        `https://shield-dev.appblox.io/change-user-password`,
+        `https://shield.appblox.io/change-user-password`,
         requestData,
         token && {
           headers: {
