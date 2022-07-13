@@ -11,12 +11,12 @@ env.init();
 
 const __dirname = path.resolve();
 
-const port = 3003
-  // Number(
-  //   process.env.BLOX_ENV_URL_home.substr(
-  //     process.env.BLOX_ENV_URL_home.length - 4
-  //   )
-  // ) || 3002;
+const port =
+  Number(
+    process.env.BLOX_ENV_URL_profile.substr(
+      process.env.BLOX_ENV_URL_profile.length - 4
+    )
+  ) || 3003;
 
 export default {
   entry: './src/index',
