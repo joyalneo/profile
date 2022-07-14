@@ -32,7 +32,7 @@ const Profile = () => {
     const token = shield.tokenStore.getToken();
     try {
       const { data } = await Axios.get(
-        `https://shield.appblox.io/get-user-details`,
+        `https://shield-dev.appblox.io/get-user-details`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
