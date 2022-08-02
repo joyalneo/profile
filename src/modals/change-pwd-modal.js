@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Formik } from 'formik';
 import Axios from 'axios';
 import { toast } from 'react-toastify';
-import { shield } from 'blox-js-sdk';
+import { shield } from 'yah-js-sdk';
 import PropTypes from 'prop-types';
 import AuthLogo from '../assets/img/logo-auth.svg';
 import IconError from '../assets/img/icons/icon-error.svg';

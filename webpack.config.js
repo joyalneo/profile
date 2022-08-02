@@ -95,9 +95,9 @@ export default {
           singleton: true, // only a single version of the shared module is allowed
           version: '^5.2.0',
         },
-        'blox-js-sdk': {
-          import: 'blox-js-sdk',
-          shareKey: 'blox-js-sdk',
+        'yah-js-sdk': {
+          import: 'yah-js-sdk',
+          shareKey: 'yah-js-sdk',
           shareScope: 'default',
           singleton: true,
           version: '^1.0.0',

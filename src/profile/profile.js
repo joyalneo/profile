@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Formik } from 'formik';
-import { shield } from 'blox-js-sdk';
+import { shield } from 'yah-js-sdk';
 import Axios from 'axios';
 import ChangePwdModal from '../modals/change-pwd-modal.js';
 import avatarIcon from '../assets/img/profile-pic.svg';

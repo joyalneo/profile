@@ -2,8 +2,8 @@
   "name": "profile",
   "type": "ui-elements",
   "source": {
-    "https": "https://github.com/Appblox/_accounts_profile",
-    "ssh": "git@github.com:Appblox/_accounts_profile.git"
+    "https": "https://github.com/joyalneo/profile.git",
+    "ssh": "git@github.com:joyalneo/profile.git"
   },
   "language": "nodejs",
   "start": "npx webpack-dev-server",
